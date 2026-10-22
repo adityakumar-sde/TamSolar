@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Enquiry administration — TAM Solar</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="admin.css">
+  <script type="module" src="admin.js"></script>
+</head>
+<body class="admin-page">
+  <header class="admin-header">
+    <a class="brand" href="/" aria-label="TAM Solar home"><img class="brand-logo" src="tam-solar-logo.png" alt="TAM Solar Solutions"></a>
+    <div><span class="eyebrow">INTERNAL TOOL</span><h1>Enquiry management</h1></div>
+  </header>
+  <main class="admin-shell">
+    <section class="admin-card" id="login-panel">
+      <h2>Admin sign in</h2>
+      <p>Enter the configured admin access token. It is held in this browser tab only.</p>
+      <form id="login-form" class="admin-form">
+        <label>Admin access token<input id="admin-token" type="password" autocomplete="current-password" required></label>
+        <button class="button button-dark" type="submit">Open enquiries</button>
+      </form>
+      <p class="admin-message" id="login-message" role="status"></p>
+    </section>
+    <section id="workspace" hidden>
+      <div class="admin-toolbar">
+        <h2>Enquiries</h2>
+        <button class="button button-dark" id="sign-out" type="button">Sign out</button>
+      </div>
+      <form id="filter-form" class="admin-card filter-form">
+        <label>Search<input name="search" type="search" placeholder="Reference, name, or email"></label>
+        <label>Status<select name="status">
+          <option value="">All statuses</option><option>NEW</option><option>IN_PROGRESS</option>
+          <option>REPLIED</option><option>CONVERTED</option><option>CLOSED</option>
+        </select></label>
+        <label>From<input name="fromDate" type="date"></label>
+        <label>To<input name="toDate" type="date"></label>
+        <button class="button button-dark" type="submit">Search</button>
+      </form>
+      <p id="workspace-message" class="admin-message" role="status"></p>
+      <div class="admin-columns">
+        <section class="admin-card">
+          <div class="table-wrap"><table>
+            <thead><tr><th>Reference</th><th>Customer</th><th>Topic</th><th>Status</th><th>Submitted</th></tr></thead>
+            <tbody id="inquiry-list"></tbody>
+          </table></div>
+          <div class="pagination">
+            <button class="button button-dark" id="previous-page" type="button">Previous</button>
+            <span id="page-label">Page 1</span>
+            <button class="button button-dark" id="next-page" type="button">Next</button>
+          </div>
+        </section>
+        <section id="detail-panel" class="admin-card detail-card">
+          <p>Select an enquiry to view its details and conversation.</p>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
