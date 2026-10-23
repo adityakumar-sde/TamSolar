@@ -7,3 +7,6 @@ backend/target/
 /frontend/dist/
 .idea/
 *.iml
+
+# Java crash logs
+hs_err_pid*.log
