@@ -68,55 +68,216 @@ public class EmailOutboxService {
         String customerText = """
                 Dear %s,
 
-                Thank you for contacting Tam Solar.
+                Thank you for choosing TAM Solar Solutions for your solar energy requirements!
 
-                We have successfully received your enquiry. Our team will review your requirements and contact you soon.
+                Your inquiry has been successfully received. Our team is reviewing your
+                requirements and will contact you shortly.
 
-                Enquiry Reference: %s
+                YOUR INQUIRY SUMMARY
+                -----------------------------------------------
+                Reference Number : %s
+                Service          : %s
+                Customer Type    : %s
+                Status           : Inquiry Received
 
-                Your Enquiry Details:
-                - Name: %s
-                - Email: %s
-                - Customer type: %s
-                - Enquiry topic: %s
-                - Message: %s
+                WHAT HAPPENS NEXT?
+                -----------------------------------------------
+                01 - Requirement Review
+                     Our team reviews your solar installation requirements.
 
-                Please keep your enquiry reference for future communication.
+                02 - Consultation
+                     We contact you to understand your property and energy needs.
 
-                Regards,
-                Tam Solar Team
+                03 - Customised Quotation
+                     We prepare a proposal tailored to your requirements.
+
+                04 - Installation Planning
+                     Once you approve the proposal, we discuss the next steps.
+
+                Thank you for giving us the opportunity to support your transition
+                to clean energy.
+
+                Warm regards,
+                TAM Solar Solutions - Customer Support Team
+                Email: solarsolutionstam@gmail.com
+                Phone: +91 83830 63590
                 """.formatted(
-                name, reference, name, customerEmail,
-                customerType, enquiryType, message);
+                name, reference, enquiryType, customerType);
 
         String customerHtml = """
                 <!DOCTYPE html>
-                <html>
-                <body style="font-family:Arial,sans-serif;color:#20382e;line-height:1.6">
-                    <p>Dear %s,</p>
-                    <p>Thank you for contacting Tam Solar. We have successfully received your enquiry.
-                    Our team will review your requirements and contact you soon.</p>
-                    <p><strong>Enquiry Reference: %s</strong></p>
-                    <h3>Your Enquiry Details</h3>
-                    <ul>
-                        <li><strong>Name:</strong> %s</li>
-                        <li><strong>Email:</strong> %s</li>
-                        <li><strong>Customer type:</strong> %s</li>
-                        <li><strong>Enquiry topic:</strong> %s</li>
-                        <li><strong>Message:</strong><br>%s</li>
-                    </ul>
-                    <p>Please keep your enquiry reference for future communication.</p>
-                    <p>Regards,<br><strong>Tam Solar Team</strong></p>
+                <html lang="en">
+                <head>
+                  <meta charset="UTF-8">
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                  <title>TAM Solar Solutions - Inquiry Confirmation</title>
+                </head>
+                <body style="margin:0;padding:0;background-color:#f4f6f2;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#16251f">
+                  <table width="100%%" cellpadding="0" cellspacing="0" style="background-color:#f4f6f2;padding:36px 16px">
+                    <tr>
+                      <td align="center">
+                        <table width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 6px 28px rgba(0,0,0,0.08);max-width:600px;border:1px solid #e4e8df">
+
+                          <!-- PROPER BRAND HEADER -->
+                          <tr>
+                            <td style="background:#16251f;padding:36px 40px;text-align:center;border-bottom:3px solid #d9ef7a">
+                              <h1 style="margin:0;font-size:26px;font-weight:800;color:#d9ef7a;letter-spacing:-0.5px;text-transform:uppercase">
+                                TAM SOLAR SOLUTIONS
+                              </h1>
+                              <p style="margin:6px 0 0;font-size:12px;font-weight:600;color:rgba(255,255,255,0.7);letter-spacing:1.8px;text-transform:uppercase">
+                                Power a Brighter Tomorrow
+                              </p>
+                            </td>
+                          </tr>
+
+                          <!-- GREETING -->
+                          <tr>
+                            <td style="padding:36px 40px 20px">
+                              <p style="margin:0 0 14px;font-size:20px;font-weight:700;color:#16251f">
+                                Dear %s,
+                              </p>
+                              <p style="margin:0;font-size:15px;color:#374151;line-height:1.75">
+                                Thank you for choosing <strong>TAM Solar Solutions</strong> for your solar energy requirements!
+                              </p>
+                              <p style="margin:12px 0 0;font-size:15px;color:#374151;line-height:1.75">
+                                Your inquiry has been successfully received. Our team is reviewing your requirements and will contact you shortly.
+                              </p>
+                            </td>
+                          </tr>
+
+                          <!-- YOUR INQUIRY SUMMARY -->
+                          <tr>
+                            <td style="padding:10px 40px 24px">
+                              <table width="100%%" cellpadding="0" cellspacing="0" style="background-color:#f8faf6;border:1px solid #e4e8df;border-radius:10px;overflow:hidden">
+                                <tr>
+                                  <td colspan="2" style="background:#edf3e8;padding:14px 20px;border-bottom:1px solid #e4e8df">
+                                    <span style="font-size:11px;font-weight:800;letter-spacing:1.8px;color:#274438;text-transform:uppercase">
+                                      YOUR INQUIRY SUMMARY
+                                    </span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="padding:12px 20px;font-size:13px;color:#68736c;border-bottom:1px solid #eef1ea;width:42%%">Reference Number</td>
+                                  <td style="padding:12px 20px;font-size:14px;font-weight:800;color:#16251f;border-bottom:1px solid #eef1ea">%s</td>
+                                </tr>
+                                <tr>
+                                  <td style="padding:12px 20px;font-size:13px;color:#68736c;border-bottom:1px solid #eef1ea">Service</td>
+                                  <td style="padding:12px 20px;font-size:13px;font-weight:700;color:#16251f;border-bottom:1px solid #eef1ea">%s</td>
+                                </tr>
+                                <tr>
+                                  <td style="padding:12px 20px;font-size:13px;color:#68736c;border-bottom:1px solid #eef1ea">Customer Type</td>
+                                  <td style="padding:12px 20px;font-size:13px;font-weight:600;color:#16251f;border-bottom:1px solid #eef1ea">%s</td>
+                                </tr>
+                                <tr>
+                                  <td style="padding:12px 20px;font-size:13px;color:#68736c">Status</td>
+                                  <td style="padding:12px 20px">
+                                    <span style="display:inline-block;background:#d9ef7a;color:#16251f;font-size:11px;font-weight:800;padding:4px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:0.5px">
+                                      Inquiry Received
+                                    </span>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+
+                          <!-- WHAT HAPPENS NEXT -->
+                          <tr>
+                            <td style="padding:10px 40px 24px">
+                              <table width="100%%" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border:1px solid #e4e8df;border-radius:10px;overflow:hidden">
+                                <tr>
+                                  <td style="background:#16251f;padding:12px 20px">
+                                    <span style="font-size:11px;font-weight:800;letter-spacing:1.8px;color:#d9ef7a;text-transform:uppercase">
+                                      WHAT HAPPENS NEXT?
+                                    </span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="padding:16px 20px">
+                                    <table width="100%%" cellpadding="0" cellspacing="0">
+                                      <tr>
+                                        <td style="padding:10px 0;border-bottom:1px solid #f0f2ed;vertical-align:top">
+                                          <table cellpadding="0" cellspacing="0"><tr>
+                                            <td style="width:34px;height:34px;background:#16251f;border-radius:50%%;text-align:center;vertical-align:middle;font-size:11px;font-weight:800;color:#d9ef7a;min-width:34px">01</td>
+                                            <td style="padding-left:14px">
+                                              <p style="margin:0;font-size:13px;font-weight:700;color:#16251f">Requirement Review</p>
+                                              <p style="margin:2px 0 0;font-size:12px;color:#68736c">Our team reviews your solar installation requirements.</p>
+                                            </td>
+                                          </tr></table>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td style="padding:10px 0;border-bottom:1px solid #f0f2ed;vertical-align:top">
+                                          <table cellpadding="0" cellspacing="0"><tr>
+                                            <td style="width:34px;height:34px;background:#16251f;border-radius:50%%;text-align:center;vertical-align:middle;font-size:11px;font-weight:800;color:#d9ef7a;min-width:34px">02</td>
+                                            <td style="padding-left:14px">
+                                              <p style="margin:0;font-size:13px;font-weight:700;color:#16251f">Consultation</p>
+                                              <p style="margin:2px 0 0;font-size:12px;color:#68736c">We contact you to understand your property and energy needs.</p>
+                                            </td>
+                                          </tr></table>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td style="padding:10px 0;border-bottom:1px solid #f0f2ed;vertical-align:top">
+                                          <table cellpadding="0" cellspacing="0"><tr>
+                                            <td style="width:34px;height:34px;background:#16251f;border-radius:50%%;text-align:center;vertical-align:middle;font-size:11px;font-weight:800;color:#d9ef7a;min-width:34px">03</td>
+                                            <td style="padding-left:14px">
+                                              <p style="margin:0;font-size:13px;font-weight:700;color:#16251f">Customized Quotation</p>
+                                              <p style="margin:2px 0 0;font-size:12px;color:#68736c">We prepare a proposal tailored to your requirements.</p>
+                                            </td>
+                                          </tr></table>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td style="padding:10px 0;vertical-align:top">
+                                          <table cellpadding="0" cellspacing="0"><tr>
+                                            <td style="width:34px;height:34px;background:#16251f;border-radius:50%%;text-align:center;vertical-align:middle;font-size:11px;font-weight:800;color:#d9ef7a;min-width:34px">04</td>
+                                            <td style="padding-left:14px">
+                                              <p style="margin:0;font-size:13px;font-weight:700;color:#16251f">Installation Planning</p>
+                                              <p style="margin:2px 0 0;font-size:12px;color:#68736c">Once you approve the proposal, we discuss the next steps.</p>
+                                            </td>
+                                          </tr></table>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+
+                          <!-- CLOSING -->
+                          <tr>
+                            <td style="padding:0 40px 28px">
+                              <p style="margin:0;font-size:14px;color:#4a5568;line-height:1.75">
+                                Thank you for giving us the opportunity to support your transition to clean energy.
+                              </p>
+                            </td>
+                          </tr>
+
+                          <!-- FOOTER -->
+                          <tr>
+                            <td style="background:#16251f;padding:28px 40px;text-align:center;border-top:1px solid rgba(255,255,255,0.1)">
+                              <p style="margin:0 0 4px;font-size:15px;font-weight:800;color:#d9ef7a;letter-spacing:0.5px">TAM Solar Solutions</p>
+                              <p style="margin:0 0 12px;font-size:12px;color:rgba(255,255,255,0.6)">Customer Support Team</p>
+                              <p style="margin:0;font-size:12px;color:rgba(255,255,255,0.5)">
+                                Email: <a href="mailto:solarsolutionstam@gmail.com" style="color:#d9ef7a;text-decoration:none;font-weight:600">solarsolutionstam@gmail.com</a>
+                                &nbsp;&bull;&nbsp;
+                                Phone: <a href="tel:+918383063590" style="color:#ffffff;text-decoration:none">+91 83830 63590</a>
+                              </p>
+                            </td>
+                          </tr>
+
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
                 </body>
                 </html>
                 """.formatted(
                 escape(name),
                 escape(reference),
-                escape(name),
-                escape(customerEmail),
-                escape(customerType),
                 escape(enquiryType),
-                escapeWithLineBreaks(message));
+                escape(customerType));
 
         outboxRepository.enqueue(
                 id,
@@ -124,56 +285,233 @@ public class EmailOutboxService {
                 "CUSTOMER_CONFIRMATION",
                 from,
                 customerEmail,
-                "Your Solar Enquiry Has Been Received - Tam Solar",
+                "Your Solar Inquiry Has Been Received - TAM Solar Solutions (" + reference + ")",
                 customerText,
                 customerHtml);
-
         String submittedAt = inquiryRepository.getForAdmin(id)
                 .map(inquiry -> safeValue(inquiry.get("created_at"), "Not available"))
                 .orElse("Not available");
 
         String adminText = """
-                New website enquiry: %s
+                Dear Admin Team,
 
-                Submitted: %s
-                Name: %s
-                Email: %s
-                Customer type: %s
-                Enquiry topic: %s
-                Message: %s
+                A new customer inquiry has been received through the TAM Solar Solutions website.
 
-                Admin panel: %s
+                CUSTOMER OVERVIEW
+                -----------------------------------------------
+                Customer Name  : %s
+                Email Address  : %s
+                Customer Type  : %s
+                Service        : %s
+                Submitted At   : %s
+
+                CUSTOMER REQUIREMENTS
+                -----------------------------------------------
+                "%s"
+
+                NEXT ACTION
+                -----------------------------------------------
+                1. Review the customer requirements.
+                2. Contact the customer.
+                3. Prepare a quotation.
+                4. Update the inquiry status in the admin panel.
+
+                Inquiry Reference: %s
+                Admin Panel: %s
+
+                This is an automated notification from the TAM Solar Solutions website.
+
+                Regards,
+                TAM Solar Solutions
+                Admin Notification System
                 """.formatted(
-                reference, submittedAt, name, customerEmail,
-                customerType, enquiryType, message, adminUrl);
+                name, customerEmail, customerType, enquiryType,
+                submittedAt, message, reference, adminUrl);
 
         String adminHtml = """
                 <!DOCTYPE html>
-                <html>
-                <body style="font-family:Arial,sans-serif;color:#20382e;line-height:1.6">
-                    <h2>New website enquiry: %s</h2>
-                    <p><strong>Submitted:</strong> %s</p>
-                    <p>
-                        <strong>Customer:</strong> %s<br>
-                        <strong>Email:</strong>
-                        <a href="mailto:%s">%s</a><br>
-                        <strong>Customer type:</strong> %s<br>
-                        <strong>Enquiry topic:</strong> %s
-                    </p>
-                    <h3>Message</h3>
-                    <p>%s</p>
-                    <p><a href="%s">Open admin panel</a></p>
+                <html lang="en">
+                <head><meta charset="UTF-8"></head>
+                <body style="margin:0;padding:0;background:#f0f2ef;font-family:Arial,sans-serif">
+                  <table width="100%%" cellpadding="0" cellspacing="0"
+                         style="background:#f0f2ef;padding:32px 0">
+                    <tr><td align="center">
+                      <table width="620" cellpadding="0" cellspacing="0"
+                             style="background:#fff;border-radius:10px;overflow:hidden;
+                                    box-shadow:0 4px 20px rgba(0,0,0,0.08);max-width:620px">
+                        <tr>
+                          <td style="background:#16251f;padding:26px 40px">
+                            <table width="100%%"><tr>
+                              <td>
+                                <p style="margin:0;font-size:20px;font-weight:700;color:#d9ef7a">
+                                  TAM Solar Solutions</p>
+                                <p style="margin:4px 0 0;font-size:10px;
+                                          color:rgba(255,255,255,0.5);letter-spacing:2px;
+                                          text-transform:uppercase">Admin Notification</p>
+                              </td>
+                              <td align="right">
+                                <span style="background:rgba(217,239,122,0.15);color:#d9ef7a;
+                                             font-size:10px;font-weight:700;padding:5px 14px;
+                                             border-radius:20px;
+                                             border:1px solid rgba(217,239,122,0.3)">
+                                  NEW INQUIRY</span>
+                              </td>
+                            </tr></table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="padding:28px 40px 0">
+                            <p style="margin:0 0 6px;font-size:17px;font-weight:700;color:#16251f">
+                              Dear Admin Team,</p>
+                            <p style="margin:0;font-size:14px;color:#4a5568;line-height:1.7">
+                              A new customer inquiry has been received through the
+                              TAM Solar Solutions website.
+                            </p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="padding:22px 40px 0">
+                            <table width="100%%" cellpadding="0" cellspacing="0"
+                                   style="background:#f8faf5;border:1px solid #e4e8df;
+                                          border-radius:8px;overflow:hidden">
+                              <tr><td style="padding:16px 22px 6px">
+                                <p style="margin:0 0 12px;font-size:10px;font-weight:700;
+                                          letter-spacing:2px;color:#78934b;text-transform:uppercase">
+                                  CUSTOMER OVERVIEW</p>
+                              </td></tr>
+                              <tr><td style="padding:0 22px 7px">
+                                <table width="100%%"><tr>
+                                  <td style="font-size:12px;color:#68736c;width:38%%;padding:4px 0">
+                                    Customer Name</td>
+                                  <td style="font-size:13px;font-weight:600;color:#16251f;padding:4px 0">
+                                    %s</td>
+                                </tr></table>
+                              </td></tr>
+                              <tr><td style="padding:0 22px 7px">
+                                <table width="100%%"><tr>
+                                  <td style="font-size:12px;color:#68736c;width:38%%;padding:4px 0">
+                                    Email Address</td>
+                                  <td style="font-size:13px;color:#16251f;padding:4px 0">
+                                    <a href="mailto:%s"
+                                       style="color:#274438;font-weight:600;text-decoration:none">
+                                      %s</a></td>
+                                </tr></table>
+                              </td></tr>
+                              <tr><td style="padding:0 22px 7px">
+                                <table width="100%%"><tr>
+                                  <td style="font-size:12px;color:#68736c;width:38%%;padding:4px 0">
+                                    Customer Type</td>
+                                  <td style="font-size:13px;font-weight:600;color:#16251f;padding:4px 0">
+                                    %s</td>
+                                </tr></table>
+                              </td></tr>
+                              <tr><td style="padding:0 22px 7px">
+                                <table width="100%%"><tr>
+                                  <td style="font-size:12px;color:#68736c;width:38%%;padding:4px 0">
+                                    Service</td>
+                                  <td style="font-size:13px;font-weight:600;color:#16251f;padding:4px 0">
+                                    %s</td>
+                                </tr></table>
+                              </td></tr>
+                              <tr><td style="padding:0 22px 16px">
+                                <table width="100%%"><tr>
+                                  <td style="font-size:12px;color:#68736c;width:38%%;padding:4px 0">
+                                    Submitted At</td>
+                                  <td style="font-size:13px;color:#16251f;padding:4px 0">%s</td>
+                                </tr></table>
+                              </td></tr>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="padding:20px 40px 0">
+                            <p style="margin:0 0 10px;font-size:10px;font-weight:700;
+                                      letter-spacing:2px;color:#78934b;text-transform:uppercase">
+                              CUSTOMER REQUIREMENTS</p>
+                            <div style="background:#f8faf5;border-left:3px solid #d9ef7a;
+                                        border-radius:0 8px 8px 0;padding:14px 18px">
+                              <p style="margin:0;font-size:14px;color:#16251f;line-height:1.75;
+                                        font-style:italic">&ldquo;%s&rdquo;</p>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="padding:20px 40px 0">
+                            <p style="margin:0 0 10px;font-size:10px;font-weight:700;
+                                      letter-spacing:2px;color:#78934b;text-transform:uppercase">
+                              NEXT ACTION</p>
+                            <table width="100%%" cellpadding="0" cellspacing="0">
+                              <tr><td style="padding:5px 0;font-size:13px;color:#4a5568">
+                                <span style="font-weight:700;color:#16251f">1.</span>
+                                &nbsp;Review the customer requirements.
+                              </td></tr>
+                              <tr><td style="padding:5px 0;font-size:13px;color:#4a5568">
+                                <span style="font-weight:700;color:#16251f">2.</span>
+                                &nbsp;Contact the customer via
+                                <a href="mailto:%s"
+                                   style="color:#274438;font-weight:600;text-decoration:none">%s</a>.
+                              </td></tr>
+                              <tr><td style="padding:5px 0;font-size:13px;color:#4a5568">
+                                <span style="font-weight:700;color:#16251f">3.</span>
+                                &nbsp;Prepare a customised quotation.
+                              </td></tr>
+                              <tr><td style="padding:5px 0;font-size:13px;color:#4a5568">
+                                <span style="font-weight:700;color:#16251f">4.</span>
+                                &nbsp;Update the inquiry status in the admin panel.
+                              </td></tr>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="padding:20px 40px 28px">
+                            <table width="100%%" cellpadding="0" cellspacing="0"
+                                   style="background:#16251f;border-radius:8px">
+                              <tr><td style="padding:16px 22px">
+                                <table width="100%%"><tr>
+                                  <td>
+                                    <p style="margin:0;font-size:10px;
+                                              color:rgba(255,255,255,0.4);letter-spacing:1.5px">
+                                      INQUIRY REFERENCE</p>
+                                    <p style="margin:4px 0 0;font-size:22px;font-weight:800;
+                                              color:#d9ef7a;letter-spacing:-0.5px">%s</p>
+                                  </td>
+                                  <td align="right" style="vertical-align:middle">
+                                    <a href="%s"
+                                       style="display:inline-block;background:#d9ef7a;color:#16251f;
+                                              font-size:12px;font-weight:700;padding:10px 18px;
+                                              border-radius:6px;text-decoration:none">
+                                      Open Admin Panel &rarr;</a>
+                                  </td>
+                                </tr></table>
+                              </td></tr>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="background:#f8faf5;border-top:1px solid #e4e8df;
+                                     padding:14px 40px;text-align:center">
+                            <p style="margin:0;font-size:11px;color:#68736c">
+                              This is an automated notification from the TAM Solar Solutions website.
+                            </p>
+                            <p style="margin:3px 0 0;font-size:11px;color:#68736c">
+                              TAM Solar Solutions &mdash; Admin Notification System
+                            </p>
+                          </td>
+                        </tr>
+                      </table>
+                    </td></tr>
+                  </table>
                 </body>
                 </html>
                 """.formatted(
-                escape(reference),
-                escape(submittedAt),
                 escape(name),
-                escape(customerEmail),
-                escape(customerEmail),
+                escape(customerEmail), escape(customerEmail),
                 escape(customerType),
                 escape(enquiryType),
+                escape(submittedAt),
                 escapeWithLineBreaks(message),
+                escape(customerEmail), escape(customerEmail),
+                escape(reference),
                 escape(adminUrl));
 
         outboxRepository.enqueue(
@@ -182,7 +520,7 @@ public class EmailOutboxService {
                 "ADMIN_NOTIFICATION",
                 from,
                 adminEmail,
-                "New Website Enquiry - " + reference,
+                "New Inquiry Received - " + reference + " - TAM Solar Solutions",
                 adminText,
                 adminHtml);
     }
@@ -349,14 +687,29 @@ public class EmailOutboxService {
     private String send(EmailOutboxMessage message)
             throws MessagingException {
 
-        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        MimeMessage mimeMessage;
+        if (mailSender instanceof org.springframework.mail.javamail.JavaMailSenderImpl impl) {
+            mimeMessage = new MimeMessage(impl.getSession()) {
+                @Override
+                protected void updateMessageID() throws MessagingException {
+                    // Do not inject client LAN IP into Message-ID!
+                    // Let Google SMTP assign its authoritative, DKIM-signed Message-ID (<...@mx.google.com>).
+                }
+            };
+        } else {
+            mimeMessage = mailSender.createMimeMessage();
+        }
 
         MimeMessageHelper helper = new MimeMessageHelper(
                 mimeMessage,
                 true,
                 StandardCharsets.UTF_8.name());
 
-        helper.setFrom(message.sender());
+        try {
+            helper.setFrom(message.sender(), "TAM Solar Solutions");
+        } catch (java.io.UnsupportedEncodingException e) {
+            helper.setFrom(message.sender());
+        }
         helper.setTo(message.recipient());
         helper.setSubject(message.subject());
         helper.setText(message.textBody(), message.htmlBody());
@@ -375,13 +728,12 @@ public class EmailOutboxService {
                         }
                     });
         } else {
-            helper.setReplyTo(from);
+            try {
+                helper.setReplyTo(from, "TAM Solar Solutions");
+            } catch (java.io.UnsupportedEncodingException e) {
+                helper.setReplyTo(from);
+            }
         }
-
-        String domain = from.substring(from.lastIndexOf('@') + 1);
-        String messageId = "<tam-solar-" + message.id() + "@" + domain + ">";
-
-        mimeMessage.setHeader("Message-ID", messageId);
 
         if ("ADMIN_REPLY".equals(message.kind())) {
             outboxRepository.findConfirmationMessageId(message.inquiryId())
@@ -399,9 +751,13 @@ public class EmailOutboxService {
         }
 
         mailSender.send(mimeMessage);
+
+        String messageId = mimeMessage.getMessageID();
+        if (messageId == null || messageId.isBlank()) {
+            messageId = "<tam-solar-" + message.id() + "@mx.google.com>";
+        }
         return messageId;
     }
-
     private static void verifySameReply(
             long existingInquiryId,
             String existingSubject,

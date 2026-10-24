@@ -64,7 +64,7 @@ form.addEventListener("submit", async (event) => {
     const message = error instanceof Error
       ? error.message
       : "We couldn’t send your enquiry. Please try again.";
-    formStatus.textContent = `${message} You can also call +91 83830 63590 or email tamsolarsolution@gmail.com.`;
+    formStatus.textContent = `${message} You can also call +91 83830 63590 or email solarsolutionstam@gmail.com.`;
   } finally {
     submitButton.disabled = false;
     submitButton.removeAttribute("aria-busy");
