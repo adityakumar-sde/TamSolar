@@ -78,6 +78,7 @@ public class EmailOutboxService {
                 Reference Number : %s
                 Service          : %s
                 Customer Type    : %s
+                Requirements     : %s
                 Status           : Inquiry Received
 
                 WHAT HAPPENS NEXT?
@@ -102,7 +103,7 @@ public class EmailOutboxService {
                 Email: solarsolutionstam@gmail.com
                 Phone: +91 83830 63590
                 """.formatted(
-                name, reference, enquiryType, customerType);
+                name, reference, enquiryType, customerType, message);
 
         String customerHtml = """
                 <!DOCTYPE html>
@@ -112,19 +113,19 @@ public class EmailOutboxService {
                   <meta name="viewport" content="width=device-width, initial-scale=1.0">
                   <title>TAM Solar Solutions - Inquiry Confirmation</title>
                 </head>
-                <body style="margin:0;padding:0;background-color:#f4f6f2;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#16251f">
-                  <table width="100%%" cellpadding="0" cellspacing="0" style="background-color:#f4f6f2;padding:36px 16px">
+                <body style="margin:0;padding:0;background-color:#071a2f;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#ffffff">
+                  <table width="100%%" cellpadding="0" cellspacing="0" style="background-color:#071a2f;padding:36px 16px">
                     <tr>
                       <td align="center">
-                        <table width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 6px 28px rgba(0,0,0,0.08);max-width:600px;border:1px solid #e4e8df">
+                        <table width="600" cellpadding="0" cellspacing="0" style="background-color:#0f2b48;border-radius:12px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.45);max-width:600px;border:1px solid #1a3d60">
 
-                          <!-- PROPER BRAND HEADER -->
+                          <!-- BRAND HEADER -->
                           <tr>
-                            <td style="background:#16251f;padding:36px 40px;text-align:center;border-bottom:3px solid #d9ef7a">
-                              <h1 style="margin:0;font-size:26px;font-weight:800;color:#d9ef7a;letter-spacing:-0.5px;text-transform:uppercase">
+                            <td style="background:#081a30;padding:36px 40px;text-align:center;border-bottom:3px solid #38bdf8">
+                              <h1 style="margin:0;font-size:26px;font-weight:800;color:#38bdf8;letter-spacing:-0.5px;text-transform:uppercase">
                                 TAM SOLAR SOLUTIONS
                               </h1>
-                              <p style="margin:6px 0 0;font-size:12px;font-weight:600;color:rgba(255,255,255,0.7);letter-spacing:1.8px;text-transform:uppercase">
+                              <p style="margin:6px 0 0;font-size:12px;font-weight:600;color:rgba(255,255,255,0.8);letter-spacing:1.8px;text-transform:uppercase">
                                 Power a Brighter Tomorrow
                               </p>
                             </td>
@@ -133,13 +134,13 @@ public class EmailOutboxService {
                           <!-- GREETING -->
                           <tr>
                             <td style="padding:36px 40px 20px">
-                              <p style="margin:0 0 14px;font-size:20px;font-weight:700;color:#16251f">
+                              <p style="margin:0 0 14px;font-size:22px;font-weight:700;color:#ffffff">
                                 Dear %s,
                               </p>
-                              <p style="margin:0;font-size:15px;color:#374151;line-height:1.75">
-                                Thank you for choosing <strong>TAM Solar Solutions</strong> for your solar energy requirements!
+                              <p style="margin:0;font-size:15px;color:#e2e8f0;line-height:1.75">
+                                Thank you for choosing <strong style="color:#38bdf8">TAM Solar Solutions</strong> for your solar energy requirements!
                               </p>
-                              <p style="margin:12px 0 0;font-size:15px;color:#374151;line-height:1.75">
+                              <p style="margin:12px 0 0;font-size:15px;color:#cbd5e1;line-height:1.75">
                                 Your inquiry has been successfully received. Our team is reviewing your requirements and will contact you shortly.
                               </p>
                             </td>
@@ -148,30 +149,34 @@ public class EmailOutboxService {
                           <!-- YOUR INQUIRY SUMMARY -->
                           <tr>
                             <td style="padding:10px 40px 24px">
-                              <table width="100%%" cellpadding="0" cellspacing="0" style="background-color:#f8faf6;border:1px solid #e4e8df;border-radius:10px;overflow:hidden">
+                              <table width="100%%" cellpadding="0" cellspacing="0" style="background-color:#0a203a;border:1px solid #1a3d60;border-radius:10px;overflow:hidden">
                                 <tr>
-                                  <td colspan="2" style="background:#edf3e8;padding:14px 20px;border-bottom:1px solid #e4e8df">
-                                    <span style="font-size:11px;font-weight:800;letter-spacing:1.8px;color:#274438;text-transform:uppercase">
+                                  <td colspan="2" style="background:#123359;padding:14px 20px;border-bottom:1px solid #1d4875">
+                                    <span style="font-size:11px;font-weight:800;letter-spacing:1.8px;color:#38bdf8;text-transform:uppercase">
                                       YOUR INQUIRY SUMMARY
                                     </span>
                                   </td>
                                 </tr>
                                 <tr>
-                                  <td style="padding:12px 20px;font-size:13px;color:#68736c;border-bottom:1px solid #eef1ea;width:42%%">Reference Number</td>
-                                  <td style="padding:12px 20px;font-size:14px;font-weight:800;color:#16251f;border-bottom:1px solid #eef1ea">%s</td>
+                                  <td style="padding:12px 20px;font-size:13px;color:#93c5fd;border-bottom:1px solid #163659;width:42%%">Reference Number</td>
+                                  <td style="padding:12px 20px;font-size:14px;font-weight:800;color:#ffffff;border-bottom:1px solid #163659">%s</td>
                                 </tr>
                                 <tr>
-                                  <td style="padding:12px 20px;font-size:13px;color:#68736c;border-bottom:1px solid #eef1ea">Service</td>
-                                  <td style="padding:12px 20px;font-size:13px;font-weight:700;color:#16251f;border-bottom:1px solid #eef1ea">%s</td>
+                                  <td style="padding:12px 20px;font-size:13px;color:#93c5fd;border-bottom:1px solid #163659">Service</td>
+                                  <td style="padding:12px 20px;font-size:13px;font-weight:700;color:#ffffff;border-bottom:1px solid #163659">%s</td>
                                 </tr>
                                 <tr>
-                                  <td style="padding:12px 20px;font-size:13px;color:#68736c;border-bottom:1px solid #eef1ea">Customer Type</td>
-                                  <td style="padding:12px 20px;font-size:13px;font-weight:600;color:#16251f;border-bottom:1px solid #eef1ea">%s</td>
+                                  <td style="padding:12px 20px;font-size:13px;color:#93c5fd;border-bottom:1px solid #163659">Customer Type</td>
+                                  <td style="padding:12px 20px;font-size:13px;font-weight:600;color:#ffffff;border-bottom:1px solid #163659">%s</td>
                                 </tr>
                                 <tr>
-                                  <td style="padding:12px 20px;font-size:13px;color:#68736c">Status</td>
+                                  <td style="padding:12px 20px;font-size:13px;color:#93c5fd;border-bottom:1px solid #163659">Your Requirements</td>
+                                  <td style="padding:12px 20px;font-size:13px;color:#ffffff;border-bottom:1px solid #163659">%s</td>
+                                </tr>
+                                <tr>
+                                  <td style="padding:12px 20px;font-size:13px;color:#93c5fd">Status</td>
                                   <td style="padding:12px 20px">
-                                    <span style="display:inline-block;background:#d9ef7a;color:#16251f;font-size:11px;font-weight:800;padding:4px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:0.5px">
+                                    <span style="display:inline-block;background:#38bdf8;color:#071a2f;font-size:11px;font-weight:800;padding:4px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:0.5px">
                                       Inquiry Received
                                     </span>
                                   </td>
@@ -183,10 +188,10 @@ public class EmailOutboxService {
                           <!-- WHAT HAPPENS NEXT -->
                           <tr>
                             <td style="padding:10px 40px 24px">
-                              <table width="100%%" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border:1px solid #e4e8df;border-radius:10px;overflow:hidden">
+                              <table width="100%%" cellpadding="0" cellspacing="0" style="background-color:#0a203a;border:1px solid #1a3d60;border-radius:10px;overflow:hidden">
                                 <tr>
-                                  <td style="background:#16251f;padding:12px 20px">
-                                    <span style="font-size:11px;font-weight:800;letter-spacing:1.8px;color:#d9ef7a;text-transform:uppercase">
+                                  <td style="background:#123359;padding:12px 20px;border-bottom:1px solid #1d4875">
+                                    <span style="font-size:11px;font-weight:800;letter-spacing:1.8px;color:#38bdf8;text-transform:uppercase">
                                       WHAT HAPPENS NEXT?
                                     </span>
                                   </td>
@@ -195,34 +200,34 @@ public class EmailOutboxService {
                                   <td style="padding:16px 20px">
                                     <table width="100%%" cellpadding="0" cellspacing="0">
                                       <tr>
-                                        <td style="padding:10px 0;border-bottom:1px solid #f0f2ed;vertical-align:top">
+                                        <td style="padding:10px 0;border-bottom:1px solid #163659;vertical-align:top">
                                           <table cellpadding="0" cellspacing="0"><tr>
-                                            <td style="width:34px;height:34px;background:#16251f;border-radius:50%%;text-align:center;vertical-align:middle;font-size:11px;font-weight:800;color:#d9ef7a;min-width:34px">01</td>
+                                            <td style="width:34px;height:34px;background:#1e4976;border-radius:50%%;text-align:center;vertical-align:middle;font-size:11px;font-weight:800;color:#38bdf8;min-width:34px">01</td>
                                             <td style="padding-left:14px">
-                                              <p style="margin:0;font-size:13px;font-weight:700;color:#16251f">Requirement Review</p>
-                                              <p style="margin:2px 0 0;font-size:12px;color:#68736c">Our team reviews your solar installation requirements.</p>
+                                              <p style="margin:0;font-size:13px;font-weight:700;color:#ffffff">Requirement Review</p>
+                                              <p style="margin:2px 0 0;font-size:12px;color:#cbd5e1">Our team reviews your solar installation requirements.</p>
                                             </td>
                                           </tr></table>
                                         </td>
                                       </tr>
                                       <tr>
-                                        <td style="padding:10px 0;border-bottom:1px solid #f0f2ed;vertical-align:top">
+                                        <td style="padding:10px 0;border-bottom:1px solid #163659;vertical-align:top">
                                           <table cellpadding="0" cellspacing="0"><tr>
-                                            <td style="width:34px;height:34px;background:#16251f;border-radius:50%%;text-align:center;vertical-align:middle;font-size:11px;font-weight:800;color:#d9ef7a;min-width:34px">02</td>
+                                            <td style="width:34px;height:34px;background:#1e4976;border-radius:50%%;text-align:center;vertical-align:middle;font-size:11px;font-weight:800;color:#38bdf8;min-width:34px">02</td>
                                             <td style="padding-left:14px">
-                                              <p style="margin:0;font-size:13px;font-weight:700;color:#16251f">Consultation</p>
-                                              <p style="margin:2px 0 0;font-size:12px;color:#68736c">We contact you to understand your property and energy needs.</p>
+                                              <p style="margin:0;font-size:13px;font-weight:700;color:#ffffff">Consultation</p>
+                                              <p style="margin:2px 0 0;font-size:12px;color:#cbd5e1">We contact you to understand your property and energy needs.</p>
                                             </td>
                                           </tr></table>
                                         </td>
                                       </tr>
                                       <tr>
-                                        <td style="padding:10px 0;border-bottom:1px solid #f0f2ed;vertical-align:top">
+                                        <td style="padding:10px 0;border-bottom:1px solid #163659;vertical-align:top">
                                           <table cellpadding="0" cellspacing="0"><tr>
-                                            <td style="width:34px;height:34px;background:#16251f;border-radius:50%%;text-align:center;vertical-align:middle;font-size:11px;font-weight:800;color:#d9ef7a;min-width:34px">03</td>
+                                            <td style="width:34px;height:34px;background:#1e4976;border-radius:50%%;text-align:center;vertical-align:middle;font-size:11px;font-weight:800;color:#38bdf8;min-width:34px">03</td>
                                             <td style="padding-left:14px">
-                                              <p style="margin:0;font-size:13px;font-weight:700;color:#16251f">Customized Quotation</p>
-                                              <p style="margin:2px 0 0;font-size:12px;color:#68736c">We prepare a proposal tailored to your requirements.</p>
+                                              <p style="margin:0;font-size:13px;font-weight:700;color:#ffffff">Customized Quotation</p>
+                                              <p style="margin:2px 0 0;font-size:12px;color:#cbd5e1">We prepare a proposal tailored to your requirements.</p>
                                             </td>
                                           </tr></table>
                                         </td>
@@ -230,10 +235,10 @@ public class EmailOutboxService {
                                       <tr>
                                         <td style="padding:10px 0;vertical-align:top">
                                           <table cellpadding="0" cellspacing="0"><tr>
-                                            <td style="width:34px;height:34px;background:#16251f;border-radius:50%%;text-align:center;vertical-align:middle;font-size:11px;font-weight:800;color:#d9ef7a;min-width:34px">04</td>
+                                            <td style="width:34px;height:34px;background:#1e4976;border-radius:50%%;text-align:center;vertical-align:middle;font-size:11px;font-weight:800;color:#38bdf8;min-width:34px">04</td>
                                             <td style="padding-left:14px">
-                                              <p style="margin:0;font-size:13px;font-weight:700;color:#16251f">Installation Planning</p>
-                                              <p style="margin:2px 0 0;font-size:12px;color:#68736c">Once you approve the proposal, we discuss the next steps.</p>
+                                              <p style="margin:0;font-size:13px;font-weight:700;color:#ffffff">Installation Planning</p>
+                                              <p style="margin:2px 0 0;font-size:12px;color:#cbd5e1">Once you approve the proposal, we discuss the next steps.</p>
                                             </td>
                                           </tr></table>
                                         </td>
@@ -248,7 +253,7 @@ public class EmailOutboxService {
                           <!-- CLOSING -->
                           <tr>
                             <td style="padding:0 40px 28px">
-                              <p style="margin:0;font-size:14px;color:#4a5568;line-height:1.75">
+                              <p style="margin:0;font-size:14px;color:#cbd5e1;line-height:1.75">
                                 Thank you for giving us the opportunity to support your transition to clean energy.
                               </p>
                             </td>
@@ -256,11 +261,11 @@ public class EmailOutboxService {
 
                           <!-- FOOTER -->
                           <tr>
-                            <td style="background:#16251f;padding:28px 40px;text-align:center;border-top:1px solid rgba(255,255,255,0.1)">
-                              <p style="margin:0 0 4px;font-size:15px;font-weight:800;color:#d9ef7a;letter-spacing:0.5px">TAM Solar Solutions</p>
-                              <p style="margin:0 0 12px;font-size:12px;color:rgba(255,255,255,0.6)">Customer Support Team</p>
-                              <p style="margin:0;font-size:12px;color:rgba(255,255,255,0.5)">
-                                Email: <a href="mailto:solarsolutionstam@gmail.com" style="color:#d9ef7a;text-decoration:none;font-weight:600">solarsolutionstam@gmail.com</a>
+                            <td style="background:#081a30;padding:28px 40px;text-align:center;border-top:1px solid rgba(255,255,255,0.12)">
+                              <p style="margin:0 0 4px;font-size:15px;font-weight:800;color:#ffffff;letter-spacing:0.5px">TAM Solar Solutions</p>
+                              <p style="margin:0 0 12px;font-size:12px;color:#94a3b8">Customer Support Team</p>
+                              <p style="margin:0;font-size:12px;color:#94a3b8">
+                                Email: <a href="mailto:solarsolutionstam@gmail.com" style="color:#38bdf8;text-decoration:none;font-weight:600">solarsolutionstam@gmail.com</a>
                                 &nbsp;&bull;&nbsp;
                                 Phone: <a href="tel:+918383063590" style="color:#ffffff;text-decoration:none">+91 83830 63590</a>
                               </p>
@@ -277,7 +282,8 @@ public class EmailOutboxService {
                 escape(name),
                 escape(reference),
                 escape(enquiryType),
-                escape(customerType));
+                escape(customerType),
+                escapeWithLineBreaks(message));
 
         outboxRepository.enqueue(
                 id,
@@ -332,28 +338,28 @@ public class EmailOutboxService {
                 <!DOCTYPE html>
                 <html lang="en">
                 <head><meta charset="UTF-8"></head>
-                <body style="margin:0;padding:0;background:#f0f2ef;font-family:Arial,sans-serif">
+                <body style="margin:0;padding:0;background:#071a2f;font-family:Arial,sans-serif;color:#ffffff">
                   <table width="100%%" cellpadding="0" cellspacing="0"
-                         style="background:#f0f2ef;padding:32px 0">
+                         style="background:#071a2f;padding:32px 0">
                     <tr><td align="center">
                       <table width="620" cellpadding="0" cellspacing="0"
-                             style="background:#fff;border-radius:10px;overflow:hidden;
-                                    box-shadow:0 4px 20px rgba(0,0,0,0.08);max-width:620px">
+                             style="background:#0f2b48;border-radius:10px;overflow:hidden;
+                                    box-shadow:0 8px 30px rgba(0,0,0,0.45);max-width:620px;border:1px solid #1a3d60">
                         <tr>
-                          <td style="background:#16251f;padding:26px 40px">
+                          <td style="background:#081a30;padding:26px 40px;border-bottom:3px solid #38bdf8">
                             <table width="100%%"><tr>
                               <td>
-                                <p style="margin:0;font-size:20px;font-weight:700;color:#d9ef7a">
+                                <p style="margin:0;font-size:20px;font-weight:700;color:#38bdf8">
                                   TAM Solar Solutions</p>
                                 <p style="margin:4px 0 0;font-size:10px;
-                                          color:rgba(255,255,255,0.5);letter-spacing:2px;
+                                          color:rgba(255,255,255,0.7);letter-spacing:2px;
                                           text-transform:uppercase">Admin Notification</p>
                               </td>
                               <td align="right">
-                                <span style="background:rgba(217,239,122,0.15);color:#d9ef7a;
+                                <span style="background:rgba(56,189,248,0.18);color:#38bdf8;
                                              font-size:10px;font-weight:700;padding:5px 14px;
                                              border-radius:20px;
-                                             border:1px solid rgba(217,239,122,0.3)">
+                                             border:1px solid #38bdf8">
                                   NEW INQUIRY</span>
                               </td>
                             </tr></table>
@@ -361,139 +367,120 @@ public class EmailOutboxService {
                         </tr>
                         <tr>
                           <td style="padding:28px 40px 0">
-                            <p style="margin:0 0 6px;font-size:17px;font-weight:700;color:#16251f">
-                              Dear Admin Team,</p>
-                            <p style="margin:0;font-size:14px;color:#4a5568;line-height:1.7">
-                              A new customer inquiry has been received through the
-                              TAM Solar Solutions website.
+                            <p style="margin:0 0 6px;font-size:18px;font-weight:700;color:#ffffff">
+                              New Inquiry from %s
+                            </p>
+                            <p style="margin:0 0 24px;font-size:13px;color:#cbd5e1;line-height:1.6">
+                              A new customer inquiry has been received through the TAM Solar Solutions website.
                             </p>
                           </td>
                         </tr>
                         <tr>
-                          <td style="padding:22px 40px 0">
+                          <td style="padding:0 40px 20px">
                             <table width="100%%" cellpadding="0" cellspacing="0"
-                                   style="background:#f8faf5;border:1px solid #e4e8df;
-                                          border-radius:8px;overflow:hidden">
-                              <tr><td style="padding:16px 22px 6px">
-                                <p style="margin:0 0 12px;font-size:10px;font-weight:700;
-                                          letter-spacing:2px;color:#78934b;text-transform:uppercase">
-                                  CUSTOMER OVERVIEW</p>
-                              </td></tr>
-                              <tr><td style="padding:0 22px 7px">
-                                <table width="100%%"><tr>
-                                  <td style="font-size:12px;color:#68736c;width:38%%;padding:4px 0">
-                                    Customer Name</td>
-                                  <td style="font-size:13px;font-weight:600;color:#16251f;padding:4px 0">
-                                    %s</td>
-                                </tr></table>
-                              </td></tr>
-                              <tr><td style="padding:0 22px 7px">
-                                <table width="100%%"><tr>
-                                  <td style="font-size:12px;color:#68736c;width:38%%;padding:4px 0">
-                                    Email Address</td>
-                                  <td style="font-size:13px;color:#16251f;padding:4px 0">
-                                    <a href="mailto:%s"
-                                       style="color:#274438;font-weight:600;text-decoration:none">
-                                      %s</a></td>
-                                </tr></table>
-                              </td></tr>
-                              <tr><td style="padding:0 22px 7px">
-                                <table width="100%%"><tr>
-                                  <td style="font-size:12px;color:#68736c;width:38%%;padding:4px 0">
-                                    Customer Type</td>
-                                  <td style="font-size:13px;font-weight:600;color:#16251f;padding:4px 0">
-                                    %s</td>
-                                </tr></table>
-                              </td></tr>
-                              <tr><td style="padding:0 22px 7px">
-                                <table width="100%%"><tr>
-                                  <td style="font-size:12px;color:#68736c;width:38%%;padding:4px 0">
-                                    Service</td>
-                                  <td style="font-size:13px;font-weight:600;color:#16251f;padding:4px 0">
-                                    %s</td>
-                                </tr></table>
-                              </td></tr>
-                              <tr><td style="padding:0 22px 16px">
-                                <table width="100%%"><tr>
-                                  <td style="font-size:12px;color:#68736c;width:38%%;padding:4px 0">
-                                    Submitted At</td>
-                                  <td style="font-size:13px;color:#16251f;padding:4px 0">%s</td>
-                                </tr></table>
-                              </td></tr>
+                                   style="background:#0a203a;border-radius:8px;border:1px solid #1a3d60;overflow:hidden">
+                              <tr>
+                                <td colspan="2"
+                                    style="background:#123359;padding:10px 16px;
+                                           font-size:11px;font-weight:700;color:#38bdf8;
+                                           letter-spacing:1px;text-transform:uppercase">
+                                  Customer Overview
+                                </td>
+                              </tr>
+                              <tr>
+                                <td style="padding:10px 16px;font-size:13px;color:#93c5fd;
+                                           border-bottom:1px solid #163659;width:38%%">Name</td>
+                                <td style="padding:10px 16px;font-size:13px;font-weight:700;
+                                           color:#ffffff;border-bottom:1px solid #163659">%s</td>
+                              </tr>
+                              <tr>
+                                <td style="padding:10px 16px;font-size:13px;color:#93c5fd;
+                                           border-bottom:1px solid #163659">Email</td>
+                                <td style="padding:10px 16px;font-size:13px;font-weight:700;
+                                           border-bottom:1px solid #163659">
+                                  <a href="mailto:%s" style="color:#38bdf8;text-decoration:none">%s</a>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td style="padding:10px 16px;font-size:13px;color:#93c5fd;
+                                           border-bottom:1px solid #163659">Customer Type</td>
+                                <td style="padding:10px 16px;font-size:13px;color:#ffffff;
+                                           border-bottom:1px solid #163659">%s</td>
+                              </tr>
+                              <tr>
+                                <td style="padding:10px 16px;font-size:13px;color:#93c5fd;
+                                           border-bottom:1px solid #163659">Service</td>
+                                <td style="padding:10px 16px;font-size:13px;font-weight:700;
+                                           color:#ffffff;border-bottom:1px solid #163659">%s</td>
+                              </tr>
+                              <tr>
+                                <td style="padding:10px 16px;font-size:13px;color:#93c5fd">Submitted At</td>
+                                <td style="padding:10px 16px;font-size:13px;color:#cbd5e1">%s</td>
+                              </tr>
                             </table>
                           </td>
                         </tr>
                         <tr>
-                          <td style="padding:20px 40px 0">
-                            <p style="margin:0 0 10px;font-size:10px;font-weight:700;
-                                      letter-spacing:2px;color:#78934b;text-transform:uppercase">
-                              CUSTOMER REQUIREMENTS</p>
-                            <div style="background:#f8faf5;border-left:3px solid #d9ef7a;
-                                        border-radius:0 8px 8px 0;padding:14px 18px">
-                              <p style="margin:0;font-size:14px;color:#16251f;line-height:1.75;
-                                        font-style:italic">&ldquo;%s&rdquo;</p>
+                          <td style="padding:0 40px 22px">
+                            <p style="margin:0 0 8px;font-size:11px;font-weight:700;color:#93c5fd;
+                                      letter-spacing:1px;text-transform:uppercase">
+                              Customer Requirements
+                            </p>
+                            <div style="background:#0c2340;border-left:4px solid #38bdf8;
+                                        padding:16px 20px;border-radius:0 8px 8px 0;border:1px solid #1a3d60;border-left-width:4px">
+                              <p style="margin:0;font-size:14px;color:#ffffff;line-height:1.75;
+                                        font-style:italic">
+                                "%s"
+                              </p>
                             </div>
                           </td>
                         </tr>
                         <tr>
-                          <td style="padding:20px 40px 0">
-                            <p style="margin:0 0 10px;font-size:10px;font-weight:700;
-                                      letter-spacing:2px;color:#78934b;text-transform:uppercase">
-                              NEXT ACTION</p>
-                            <table width="100%%" cellpadding="0" cellspacing="0">
-                              <tr><td style="padding:5px 0;font-size:13px;color:#4a5568">
-                                <span style="font-weight:700;color:#16251f">1.</span>
-                                &nbsp;Review the customer requirements.
-                              </td></tr>
-                              <tr><td style="padding:5px 0;font-size:13px;color:#4a5568">
-                                <span style="font-weight:700;color:#16251f">2.</span>
-                                &nbsp;Contact the customer via
-                                <a href="mailto:%s"
-                                   style="color:#274438;font-weight:600;text-decoration:none">%s</a>.
-                              </td></tr>
-                              <tr><td style="padding:5px 0;font-size:13px;color:#4a5568">
-                                <span style="font-weight:700;color:#16251f">3.</span>
-                                &nbsp;Prepare a customised quotation.
-                              </td></tr>
-                              <tr><td style="padding:5px 0;font-size:13px;color:#4a5568">
-                                <span style="font-weight:700;color:#16251f">4.</span>
-                                &nbsp;Update the inquiry status in the admin panel.
-                              </td></tr>
-                            </table>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td style="padding:20px 40px 28px">
+                          <td style="padding:0 40px 26px">
                             <table width="100%%" cellpadding="0" cellspacing="0"
-                                   style="background:#16251f;border-radius:8px">
-                              <tr><td style="padding:16px 22px">
-                                <table width="100%%"><tr>
-                                  <td>
-                                    <p style="margin:0;font-size:10px;
-                                              color:rgba(255,255,255,0.4);letter-spacing:1.5px">
-                                      INQUIRY REFERENCE</p>
-                                    <p style="margin:4px 0 0;font-size:22px;font-weight:800;
-                                              color:#d9ef7a;letter-spacing:-0.5px">%s</p>
-                                  </td>
-                                  <td align="right" style="vertical-align:middle">
-                                    <a href="%s"
-                                       style="display:inline-block;background:#d9ef7a;color:#16251f;
-                                              font-size:12px;font-weight:700;padding:10px 18px;
-                                              border-radius:6px;text-decoration:none">
-                                      Open Admin Panel &rarr;</a>
-                                  </td>
-                                </tr></table>
-                              </td></tr>
+                                   style="background:#0a203a;border:1px solid #1a3d60;border-radius:8px;padding:16px 20px">
+                              <tr>
+                                <td>
+                                  <p style="margin:0 0 10px;font-size:11px;font-weight:700;color:#38bdf8;
+                                            letter-spacing:1px;text-transform:uppercase">
+                                    Next Action Steps
+                                  </p>
+                                  <table width="100%%" cellpadding="4" cellspacing="0"
+                                         style="font-size:12px;color:#cbd5e1">
+                                    <tr><td style="color:#38bdf8;width:20px;font-weight:700">1.</td>
+                                        <td>Review the customer requirements above</td></tr>
+                                    <tr><td style="color:#38bdf8;font-weight:700">2.</td>
+                                        <td>Contact customer via email or phone</td></tr>
+                                    <tr><td style="color:#38bdf8;font-weight:700">3.</td>
+                                        <td>Prepare and dispatch a solar quotation</td></tr>
+                                    <tr><td style="color:#38bdf8;font-weight:700">4.</td>
+                                        <td>Update inquiry status in the admin panel</td></tr>
+                                  </table>
+                                </td>
+                              </tr>
                             </table>
                           </td>
                         </tr>
                         <tr>
-                          <td style="background:#f8faf5;border-top:1px solid #e4e8df;
-                                     padding:14px 40px;text-align:center">
-                            <p style="margin:0;font-size:11px;color:#68736c">
+                          <td style="padding:0 40px 30px" align="center">
+                            <a href="%s"
+                               style="display:inline-block;background:#38bdf8;color:#071a2f;
+                                      font-size:13px;font-weight:800;padding:13px 32px;
+                                      border-radius:6px;text-decoration:none;letter-spacing:0.5px">
+                              Open in Admin Panel &rarr;
+                            </a>
+                            <p style="margin:12px 0 0;font-size:12px;color:#94a3b8">
+                              Reference: <strong style="color:#ffffff">%s</strong>
+                            </p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="background:#081a30;padding:20px 40px;border-top:1px solid rgba(255,255,255,0.12);
+                                     text-align:center">
+                            <p style="margin:0;font-size:12px;color:#94a3b8">
                               This is an automated notification from the TAM Solar Solutions website.
                             </p>
-                            <p style="margin:3px 0 0;font-size:11px;color:#68736c">
+                            <p style="margin:4px 0 0;font-size:11px;color:#64748b">
                               TAM Solar Solutions &mdash; Admin Notification System
                             </p>
                           </td>
@@ -505,14 +492,14 @@ public class EmailOutboxService {
                 </html>
                 """.formatted(
                 escape(name),
+                escape(name),
                 escape(customerEmail), escape(customerEmail),
                 escape(customerType),
                 escape(enquiryType),
                 escape(submittedAt),
                 escapeWithLineBreaks(message),
-                escape(customerEmail), escape(customerEmail),
-                escape(reference),
-                escape(adminUrl));
+                escape(adminUrl),
+                escape(reference));
 
         outboxRepository.enqueue(
                 id,
@@ -566,13 +553,17 @@ public class EmailOutboxService {
         String html = """
                 <!DOCTYPE html>
                 <html>
-                <body style="font-family:Arial,sans-serif;color:#20382e;line-height:1.6">
-                    <div>%s</div>
-                    <hr style="border:none;border-top:1px solid #ddd;margin-top:24px">
-                    <p style="color:#68736c;font-size:12px">
-                        Enquiry reference: %s
-                    </p>
-                    <p>Regards,<br><strong>Tam Solar Team</strong></p>
+                <body style="margin:0;padding:24px;background:#071a2f;font-family:Arial,sans-serif;color:#ffffff;line-height:1.7">
+                    <div style="background:#0f2b48;padding:28px 32px;border-radius:10px;border:1px solid #1a3d60;color:#ffffff;max-width:600px">
+                        <div style="font-size:15px;color:#ffffff">%s</div>
+                        <hr style="border:none;border-top:1px solid #1a3d60;margin:24px 0 16px">
+                        <p style="color:#93c5fd;font-size:12px;margin:0 0 8px">
+                            Enquiry reference: <strong style="color:#ffffff">%s</strong>
+                        </p>
+                        <p style="color:#cbd5e1;font-size:13px;margin:0">
+                            Regards,<br><strong style="color:#38bdf8">TAM Solar Solutions Team</strong>
+                        </p>
+                    </div>
                 </body>
                 </html>
                 """.formatted(escapeWithLineBreaks(cleanBody), escape(reference));
@@ -612,7 +603,7 @@ public class EmailOutboxService {
      * Poll the outbox for due messages.
      * Keep this method aligned with the existing repository claim/retry logic.
      */
-    @Scheduled(fixedDelayString = "${tamsolar.email.retry-delay-ms:15000}")
+    @Scheduled(fixedDelayString = "${tamsolar.email.retry-delay-ms:5000}")
     public void deliverDueMessages() {
         List<Long> dueIds = outboxRepository.findDueIds();
 
@@ -754,7 +745,8 @@ public class EmailOutboxService {
 
         String messageId = mimeMessage.getMessageID();
         if (messageId == null || messageId.isBlank()) {
-            messageId = "<tam-solar-" + message.id() + "@mx.google.com>";
+            String domain = from.substring(from.lastIndexOf('@') + 1);
+            messageId = "<tam-solar-" + message.id() + "@" + domain + ">";
         }
         return messageId;
     }

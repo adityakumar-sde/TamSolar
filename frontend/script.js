@@ -70,3 +70,26 @@ form.addEventListener("submit", async (event) => {
     submitButton.removeAttribute("aria-busy");
   }
 });
+
+// Background video auto-play on scroll
+const bgVideo = document.getElementById('solar-bg-video');
+const heroSection = document.getElementById('home');
+if (bgVideo && heroSection) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        bgVideo.play().catch(() => {});
+      } else {
+        bgVideo.pause();
+      }
+    });
+  }, { threshold: 0.15 });
+  observer.observe(heroSection);
+
+  window.addEventListener('scroll', () => {
+    const rect = heroSection.getBoundingClientRect();
+    if (rect.bottom > 50 && rect.top < window.innerHeight) {
+      if (bgVideo.paused) bgVideo.play().catch(() => {});
+    }
+  }, { passive: true });
+}
