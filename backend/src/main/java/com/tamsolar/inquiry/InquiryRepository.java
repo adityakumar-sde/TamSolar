@@ -17,19 +17,24 @@ public class InquiryRepository {
     public InquiryRepository(DataSource dataSource, JdbcTemplate jdbcTemplate) {
         this.insertInquiry = new SimpleJdbcInsert(dataSource)
             .withTableName("inquiries")
-            .usingColumns("name", "email", "customer_type", "enquiry_type", "message")
+            .usingColumns("name", "email", "phone", "customer_type", "enquiry_type", "message")
             .usingGeneratedKeyColumns("id");
         this.jdbcTemplate = jdbcTemplate;
     }
 
     public Long create(String name, String email, String customerType, String enquiryType, String message) {
-        Number generatedId = insertInquiry.executeAndReturnKey(Map.of(
-            "name", name,
-            "email", email,
-            "customer_type", customerType,
-            "enquiry_type", enquiryType,
-            "message", message
-        ));
+        return create(name, email, null, customerType, enquiryType, message);
+    }
+
+    public Long create(String name, String email, String phone, String customerType, String enquiryType, String message) {
+        java.util.Map<String, Object> params = new java.util.HashMap<>();
+        params.put("name", name);
+        params.put("email", email);
+        params.put("phone", phone);
+        params.put("customer_type", customerType);
+        params.put("enquiry_type", enquiryType);
+        params.put("message", message);
+        Number generatedId = insertInquiry.executeAndReturnKey(params);
         return generatedId.longValue();
     }
 
@@ -47,7 +52,7 @@ public class InquiryRepository {
     public Optional<Map<String, Object>> getForAdmin(long inquiryId) {
         List<Map<String, Object>> inquiries = jdbcTemplate.queryForList(
             """
-            SELECT i.id, i.name, i.email, i.customer_type, i.enquiry_type, i.message,
+            SELECT i.id, i.name, i.email, i.phone, i.customer_type, i.enquiry_type, i.message,
                    i.created_at, w.status, w.internal_notes, w.updated_at
             FROM inquiries i
             JOIN inquiry_workflow w ON w.inquiry_id = i.id

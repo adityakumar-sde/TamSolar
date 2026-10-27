@@ -31,6 +31,7 @@ public class InquiryService {
         Long id = inquiryRepository.create(
             request.getName().trim(),
             request.getEmail().trim(),
+            request.getPhone() != null ? request.getPhone().trim() : null,
             request.getCustomerType(),
             request.getEnquiryType(),
             request.getMessage().trim()

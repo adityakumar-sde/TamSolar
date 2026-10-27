@@ -95,7 +95,7 @@ async function loadDetail(id) {
   detailPanel.append(element("h2", `TS-${String(inquiry.id).padStart(6, "0")}`));
   const details = document.createElement("dl");
   for (const [label, key] of [
-    ["Customer", "name"], ["Email", "email"], ["Customer type", "customer_type"],
+    ["Customer", "name"], ["Mobile Number", "phone"], ["Email", "email"], ["Customer type", "customer_type"],
     ["Enquiry topic", "enquiry_type"], ["Submitted", "created_at"],
     ["Last updated", "updated_at"], ["Message", "message"],
   ]) appendField(details, label, inquiry[key]);

@@ -69,7 +69,7 @@ public class AdminInquiryRepository {
         pageParameters.add(size);
         pageParameters.add(page * size);
 
-        String sql = "SELECT i.id, i.name, i.email, i.customer_type, "
+        String sql = "SELECT i.id, i.name, i.email, i.phone, i.customer_type, "
                 + "i.enquiry_type, i.created_at, "
                 + "w.status, w.updated_at, "
                 + "(SELECT COUNT(*) FROM email_outbox e "

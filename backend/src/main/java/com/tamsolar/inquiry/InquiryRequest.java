@@ -16,6 +16,14 @@ public class InquiryRequest {
     @Size(max = 254, message = "Email must be 254 characters or fewer.")
     private String email;
 
+    @Size(max = 25, message = "Mobile number must be 25 characters or fewer.")
+    @Pattern(
+        regexp = "^$|^[+0-9\\s\\-().]{7,25}$",
+        message = "Enter a valid mobile number."
+    )
+    private String phone;
+
+
     @NotBlank(message = "Choose a customer type.")
     @Pattern(
         regexp = "Homeowner|Business|Retailer|Wholesaler|Installer|Other",
@@ -48,6 +56,14 @@ public class InquiryRequest {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+        public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getCustomerType() {

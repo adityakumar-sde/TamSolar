@@ -86,19 +86,16 @@
                 <directory>${project.basedir}/../frontend</directory>
                 <targetPath>static</targetPath>
                 <includes>
-                    <include>index.html</include>
-                    <include>admin.html</include>
-                    <include>styles.css</include>
-                    <include>admin.css</include>
-                    <include>script.js</include>
-                    <include>admin.js</include>
-                    <include>tam-solar-logo.png</include>
-                    <include>favicon.png</include>
-                    <include>tamsolar.mp4</include>
-                    <include>video-demo.html</include>
-                    <include>email-preview.html</include>
-                    <include>hero-solar.jpg</include>
+                    <include>**/*</include>
                 </includes>
+                <excludes>
+                    <exclude>node_modules/**</exclude>
+                    <exclude>dist/**</exclude>
+                    <exclude>package.json</exclude>
+                    <exclude>pnpm*</exclude>
+                    <exclude>vite.config.js</exclude>
+                    <exclude>Dockerfile</exclude>
+                </excludes>
             </resource>
 
         </resources>

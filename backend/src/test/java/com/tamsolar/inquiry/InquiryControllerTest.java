@@ -80,6 +80,46 @@ class InquiryControllerTest {
     }
 
     @Test
+    void savesValidEnquiryWithPhoneAndReturnsReference() throws Exception {
+        when(inquiryService.createInquiry(any(InquiryRequest.class))).thenReturn(43L);
+
+        mockMvc.perform(post("/api/inquiries")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("""
+                    {
+                      "name": "Aditya Kumar",
+                      "phone": "+91 98765 43210",
+                      "email": "aditya@example.com",
+                      "customerType": "Retailer",
+                      "enquiryType": "Customer support",
+                      "message": "Please give me a call back regarding commercial solar."
+                    }
+                    """))
+            .andExpect(status().isCreated())
+            .andExpect(jsonPath("$.reference").value("TS-000043"));
+
+        verify(inquiryService).createInquiry(any(InquiryRequest.class));
+    }
+
+    @Test
+    void rejectsInvalidPhoneFormat() throws Exception {
+        mockMvc.perform(post("/api/inquiries")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("""
+                    {
+                      "name": "Test Customer",
+                      "phone": "invalid-phone-abc",
+                      "email": "customer@example.com",
+                      "customerType": "Homeowner",
+                      "enquiryType": "Solar quote",
+                      "message": "I would like information about a solar quote."
+                    }
+                    """))
+            .andExpect(status().isBadRequest())
+            .andExpect(jsonPath("$.error").exists());
+    }
+
+    @Test
     void rejectsInvalidEnquiryWithoutSavingIt() throws Exception {
         mockMvc.perform(post("/api/inquiries")
                 .contentType(MediaType.APPLICATION_JSON)

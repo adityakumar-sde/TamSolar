@@ -9,15 +9,15 @@
       content="TAM Solar Solutions provides solar products and support for homeowners, businesses, retailers, and wholesale partners."
     />
     <title>TAM Solar Solutions — Power a brighter tomorrow</title>
-    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="icon" type="image/png" href="assets/images/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
+    <link rel="stylesheet" href="css/styles.css" />
+    <script type="module" src="js/script.js"></script>
   </head>
   <body>
     <header class="site-header">
@@ -25,7 +25,7 @@
         <a class="brand" href="#home" aria-label="TAM Solar Solutions home">
           <img
             class="brand-logo"
-            src="tam-solar-logo.png"
+            src="assets/images/tam-solar-logo.png"
             alt="TAM Solar Solutions"
           />
         </a>
@@ -62,7 +62,7 @@
             playsinline
             preload="auto"
           >
-            <source src="tamsolar.mp4" type="video/mp4" />
+            <source src="assets/video/tamsolar.mp4" type="video/mp4" />
           </video>
           <div class="hero-video-overlay"></div>
         </div>
@@ -96,7 +96,7 @@
           <div class="hero-visual">
             <img
               class="hero-image"
-              src="hero-solar.jpg"
+              src="assets/images/hero-solar.jpg"
               alt="Solar panels collecting sunlight under a clear sky"
             />
             <div class="image-caption">
@@ -474,12 +474,26 @@
                   name="name"
                   type="text"
                   autocomplete="name"
-                  placeholder="Name"
+                  placeholder="Your full name"
                   maxlength="100"
                   required
                 />
               </label>
 
+              <label>
+                Mobile number
+                <input
+                  name="phone"
+                  type="tel"
+                  autocomplete="tel"
+                  placeholder="+91 98765 43210"
+                  maxlength="25"
+                  required
+                />
+              </label>
+            </div>
+
+            <div class="form-row">
               <label>
                 Email address
                 <input
@@ -491,9 +505,7 @@
                   required
                 />
               </label>
-            </div>
 
-            <div class="form-row">
               <label>
                 I'm enquiring as
                 <select name="customerType" required>
@@ -506,23 +518,21 @@
                   <option value="Other">Other</option>
                 </select>
               </label>
-
-              <label>
-                What can we help with?
-                <select name="enquiryType" id="enquiry-type" required>
-                  <option value="" disabled selected>Select a topic</option>
-                  <option value="Solar quote">Solar quote</option>
-                  <option value="Product information">
-                    Product information
-                  </option>
-                  <option value="Trade partnership">Trade partnership</option>
-                  <option value="Customer support">Customer support</option>
-                  <option value="Order support">Order support</option>
-                  <option value="Warranty enquiry">Warranty enquiry</option>
-                  <option value="Other">Other</option>
-                </select>
-              </label>
             </div>
+
+            <label>
+              What can we help with?
+              <select name="enquiryType" id="enquiry-type" required>
+                <option value="" disabled selected>Select a topic</option>
+                <option value="Solar quote">Solar quote</option>
+                <option value="Product information">Product information</option>
+                <option value="Trade partnership">Trade partnership</option>
+                <option value="Customer support">Customer support</option>
+                <option value="Order support">Order support</option>
+                <option value="Warranty enquiry">Warranty enquiry</option>
+                <option value="Other">Other</option>
+              </select>
+            </label>
 
             <label>
               A little about your project
@@ -555,125 +565,153 @@
       </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="container footer-main">
-        <a
-          class="brand footer-brand"
-          href="#home"
-          aria-label="TAM Solar Solutions home"
-          ><img
-            class="brand-logo"
-            src="tam-solar-logo.png"
-            alt="TAM Solar Solutions"
-        /></a>
-        <p class="footer-tagline">
-          TAM Solar Solutions<br />A brighter way to power<br />your world.
-        </p>
-        <div class="footer-nav">
-          <span>EXPLORE</span><a href="#solutions">Solutions</a
-          ><a href="#products">Products</a
-          ><a href="#partners">Partner with us</a>
+    <footer class="site-footer" id="site-footer">
+      <div class="footer-canvas-wrap">
+        <div class="container footer-content-grid">
+          <!-- Col 1: Brand & Socials -->
+          <div class="footer-col footer-col-brand">
+            <a class="brand footer-brand" href="#home" aria-label="TAM Solar Solutions home">
+              <img
+                class="brand-logo footer-logo-img"
+                src="assets/images/tam-solar-logo.png"
+                alt="TAM Solar Solutions"
+              />
+            </a>
+            <p class="footer-tagline">
+              A brighter way to power<br />your world.
+            </p>
+            <div class="footer-social-row">
+              <a
+                class="footer-social-btn instagram"
+                href="https://www.instagram.com/solutionstamsolar/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="currentColor" stroke-width="2"/>
+                  <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/>
+                  <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/>
+                </svg>
+              </a>
+              <a
+                class="footer-social-btn facebook"
+                href="https://www.facebook.com/search/top?q=Tam%20Solar"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="currentColor" d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Col 2: Quick Links -->
+          <div class="footer-col footer-col-links">
+            <div class="footer-heading-wrap">
+              <h3 class="footer-heading">Quick Links</h3>
+              <span class="footer-heading-line"></span>
+            </div>
+            <ul class="footer-links-list">
+              <li>
+                <a href="#solutions">
+                  <span class="footer-arrow-icon" aria-hidden="true">&#10132;</span>
+                  <span>Solutions</span>
+                </a>
+              </li>
+              <li>
+                <a href="#products">
+                  <span class="footer-arrow-icon" aria-hidden="true">&#10132;</span>
+                  <span>Products</span>
+                </a>
+              </li>
+              <li>
+                <a href="#partners">
+                  <span class="footer-arrow-icon" aria-hidden="true">&#10132;</span>
+                  <span>Partner with us</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Col 3: Contact & Follow -->
+          <div class="footer-col footer-col-contact">
+            <div class="footer-heading-wrap">
+              <h3 class="footer-heading">Contact &amp; Follow</h3>
+              <span class="footer-heading-line"></span>
+            </div>
+            <ul class="footer-contact-list">
+              <li>
+                <a href="tel:+918383063590" class="footer-contact-item">
+                  <span class="footer-badge-icon badge-phone">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path fill="currentColor" d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                    </svg>
+                  </span>
+                  <span class="footer-contact-text">+91 83830 63590</span>
+                </a>
+              </li>
+              <li>
+                <a href="mailto:solarsolutionstam@gmail.com" class="footer-contact-item">
+                  <span class="footer-badge-icon badge-mail">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                  </span>
+                  <span class="footer-contact-text">solarsolutionstam@gmail.com</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/solutionstamsolar/" target="_blank" rel="noopener noreferrer" class="footer-contact-item">
+                  <span class="footer-badge-icon badge-insta">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="currentColor" stroke-width="2"/>
+                      <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/>
+                      <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/>
+                    </svg>
+                  </span>
+                  <span class="footer-contact-text">Instagram: @solutionstamsolar</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/search/top?q=Tam%20Solar" target="_blank" rel="noopener noreferrer" class="footer-contact-item">
+                  <span class="footer-badge-icon badge-fb">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path fill="currentColor" d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/>
+                    </svg>
+                  </span>
+                  <span class="footer-contact-text">Facebook: TAM Solar</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Col 4: Spacer to display clean landscape -->
+          <div class="footer-col footer-col-spacer" aria-hidden="true"></div>
         </div>
-        <div class="footer-nav footer-contact">
-          <span>CONTACT &amp; FOLLOW</span>
-          <a href="tel:+918383063590"
-            ><svg
-              class="footer-contact-icon"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                d="M6.6 3.5 9.2 3l2 4.7-2.1 1.7a15 15 0 0 0 5.5 5.5l1.7-2.1 4.7 2-.5 2.6a2 2 0 0 1-2.2 1.6A17.5 17.5 0 0 1 5 5.7a2 2 0 0 1 1.6-2.2Z"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.7"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              /></svg
-            >+91 83830 63590</a
-          >
-          <a href="mailto:solarsolutionstam@gmail.com"
-            ><svg
-              class="footer-contact-icon"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <rect
-                x="3.5"
-                y="5.5"
-                width="17"
-                height="13"
-                rx="1.5"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.7"
-              />
-              <path
-                d="m4.5 7 7.5 6 7.5-6"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.7"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              /></svg
-            >solarsolutionstam@gmail.com</a
-          >
-          <a
-            href="https://www.instagram.com/solutionstamsolar/"
-            target="_blank"
-            rel="noopener noreferrer"
-            ><svg
-              class="footer-contact-icon"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <rect
-                x="3.5"
-                y="3.5"
-                width="17"
-                height="17"
-                rx="5"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.7"
-              />
-              <circle
-                cx="12"
-                cy="12"
-                r="4"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.7"
-              />
-              <circle cx="17.7" cy="6.7" r="1" fill="currentColor" /></svg
-            >Instagram: @solutionstamsolar</a
-          >
-          <a
-            href="https://www.facebook.com/search/top?q=Tam%20Solar"
-            target="_blank"
-            rel="noopener noreferrer"
-            ><svg
-              class="footer-contact-icon"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                d="M13.6 21v-8h2.7l.4-3.1h-3.1v-2c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7.5V13h2.7v8h3.4Z"
-                fill="currentColor"
-              /></svg
-            >Facebook: TAM Solar</a
-          >
-        </div>
-        <a class="back-top" href="#home"
-          >Back to top <span aria-hidden="true">↑</span></a
-        >
       </div>
-      <div class="container footer-bottom">
-        <span>© <span id="current-year"></span> TAM Solar Solutions</span
-        ><span>Good energy. Made for you.</span
-        ><a href="mailto:solarsolutionstam@gmail.com"
-          >solarsolutionstam@gmail.com ↗</a
-        >
+
+      <!-- Sub-Footer Bottom Bar -->
+      <div class="footer-subbar">
+        <div class="container subbar-container">
+          <div class="subbar-copy">
+            &copy; <span id="current-year">2026</span> TAM Solar Solutions. All rights reserved.
+          </div>
+          <div class="subbar-motto">
+            <span class="motto-line"></span>
+            <span class="motto-leaf">&#127811;</span>
+            <span class="motto-text">Clean Energy. Brighter Future.</span>
+            <span class="motto-leaf">&#127811;</span>
+            <span class="motto-line"></span>
+          </div>
+          <div class="subbar-links">
+            <a href="#home">Privacy Policy</a>
+            <span class="subbar-divider">|</span>
+            <a href="#home">Terms &amp; Conditions</a>
+          </div>
+        </div>
       </div>
     </footer>
   </body>

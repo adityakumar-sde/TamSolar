@@ -26,7 +26,7 @@ class InquiryServiceTest {
         when(inquiryRepository.findBySubmissionKey("stable-key"))
             .thenReturn(Optional.<Long>empty(), Optional.of(81L));
         when(inquiryRepository.create(
-            "Customer", "customer@example.com", "Homeowner", "Solar quote", "Interested."
+            "Customer", "customer@example.com", null, "Homeowner", "Solar quote", "Interested."
         )).thenReturn(81L);
         InquiryRequest request = new InquiryRequest();
         request.setName(" Customer ");
@@ -40,7 +40,7 @@ class InquiryServiceTest {
         assertEquals(81L, service.createInquiry(request, "stable-key"));
 
         verify(inquiryRepository, times(1)).create(
-            "Customer", "customer@example.com", "Homeowner", "Solar quote", "Interested."
+            "Customer", "customer@example.com", null, "Homeowner", "Solar quote", "Interested."
         );
         verify(inquiryRepository, times(1)).saveSubmissionKey("stable-key", 81L);
         verify(inquiryRepository, times(1)).initializeWorkflow(81L);
