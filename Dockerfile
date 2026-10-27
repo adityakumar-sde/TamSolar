@@ -1,14 +1,20 @@
-FROM eclipse-temurin:17-jdk-jammy
+FROM eclipse-temurin:17-jdk-jammy AS build
 
 WORKDIR /app
 
 COPY backend/ ./backend/
 COPY frontend/ ./frontend/
 
-RUN chmod +x ./backend/mvnw \
-    && cd ./backend \
-    && ./mvnw clean package -DskipTests
+WORKDIR /app/backend
+
+RUN chmod +x mvnw && ./mvnw clean package -DskipTests
+
+FROM eclipse-temurin:17-jre-jammy
+
+WORKDIR /app
+
+COPY --from=build /app/backend/target/tam-solar-1.0.0.war /app/app.war
 
 EXPOSE 10000
 
-CMD ["sh", "-c", "java -Dserver.address=0.0.0.0 -Dserver.port=${PORT:-10000} -jar /app/backend/target/tam-solar-1.0.0.jar"]
+ENTRYPOINT ["sh", "-c", "java -Dserver.address=0.0.0.0 -Dserver.port=${PORT:-10000} -jar /app/app.war"]
