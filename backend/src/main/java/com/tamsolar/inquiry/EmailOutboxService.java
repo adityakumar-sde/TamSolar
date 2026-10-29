@@ -80,6 +80,7 @@ public class EmailOutboxService {
                 YOUR INQUIRY SUMMARY
                 -----------------------------------------------
                 Reference Number : %s
+                Mobile Number    : %s
                 Service          : %s
                 Customer Type    : %s
                 Requirements     : %s
@@ -326,6 +327,7 @@ public class EmailOutboxService {
                 -----------------------------------------------
                 Customer Name  : %s
                 Email Address  : %s
+                Mobile Number  : %s
                 Customer Type  : %s
                 Service        : %s
                 Submitted At   : %s

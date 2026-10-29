@@ -318,27 +318,37 @@ h1, h2 { font-family: var(--font-display); letter-spacing: -2.6px; }
   gap: 14px;
   margin-top: 24px;
 }
-.company-contact > a {
+.company-contact > a,
+.company-contact-item {
   display: flex;
   min-width: 0;
   align-items: center;
   gap: 12px;
   color: #ffffff;
   font-size: 12px;
-  transition: color .2s, transform .2s;
-  text-decoration: none;
 }
+.company-contact-item > a {
+  color: #ffffff;
+  text-decoration: none;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  transition: color .2s, transform .2s;
+  display: inline-block;
+}
+.company-contact-item > a:hover,
 .company-contact > a:hover {
   color: #7dd3fc;
   transform: translateX(3px);
 }
-.company-contact > a > svg {
+.company-contact > a > svg,
+.company-contact-item > svg {
   flex: 0 0 20px;
   width: 20px;
   height: 20px;
   color: #7dd3fc;
 }
-.company-contact > a > span {
+.company-contact > a > span,
+.company-contact-item > a > span {
   min-width: 0;
   overflow-wrap: anywhere;
 }
@@ -576,17 +586,21 @@ h1, h2 { font-family: var(--font-display); letter-spacing: -2.6px; }
 }
 
 .footer-contact-item {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 12px;
+}
+
+.footer-contact-text {
   text-decoration: none;
   color: #1e3a5f;
   font-size: 13.5px;
   font-weight: 600;
+  display: inline-block;
   transition: color 0.15s ease, transform 0.15s ease;
 }
 
-.footer-contact-item:hover {
+.footer-contact-text:hover {
   color: #0052a5;
   transform: translateX(2px);
 }
