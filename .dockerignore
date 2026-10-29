@@ -1,12 +1,21 @@
 .git
 .gitignore
 
+# Secrets and local environments
 **/.env
 **/.env.*
 !**/.env.example
 
+# Build outputs
 **/target/
 **/node_modules/
+**/dist/
 
+# Backups and logs
+database-backup/
+*.log
+*.backup
+
+# IDE configurations
 .idea/
 .vscode/
