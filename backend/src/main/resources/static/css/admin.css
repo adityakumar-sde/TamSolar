@@ -1,0 +1,54 @@
+.admin-page { min-height: 100vh; background: #eff1e9; }
+.admin-header { display: flex; align-items: center; gap: 22px; padding: 12px max(24px, calc((100% - 1280px) / 2)); background: #fff; border-bottom: 1px solid var(--line); }
+.admin-header .brand-logo { width: 94px; height: 62px; }
+.admin-header h1 { margin: 4px 0 0; font: 700 21px var(--font-display); letter-spacing: -.5px; }
+.admin-shell { width: min(1280px, calc(100% - 40px)); margin: 32px auto 70px; }
+.admin-card { min-width: 0; padding: 22px; background: #fff; border: 1px solid var(--line); border-radius: 4px; }
+.admin-card h2, .admin-toolbar h2 { margin: 0 0 13px; font: 700 20px var(--font-display); }
+.admin-card p { color: var(--muted); font-size: 13px; line-height: 1.6; }
+.admin-form { max-width: 460px; }
+.admin-form label, .filter-form label, .detail-card label { display: grid; gap: 7px; color: #43534a; font-size: 11px; font-weight: 700; }
+.admin-form input, .filter-form input, .filter-form select, .detail-card input, .detail-card select, .detail-card textarea { width: 100%; min-width: 0; padding: 11px; border: 1px solid #d9ded3; border-radius: 3px; background: white; color: var(--ink); font: 12px var(--font-body); }
+.admin-form button { margin-top: 15px; }
+.admin-message { min-height: 18px; color: #8c392c !important; }
+.admin-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+.admin-toolbar h2 { margin: 0; }
+.filter-form { display: grid; grid-template-columns: 2fr repeat(3, 1fr) auto; align-items: end; gap: 12px; margin-bottom: 14px; }
+.filter-form button { min-height: 38px; }
+.admin-columns { display: grid; grid-template-columns: minmax(450px, 1.15fr) minmax(360px, .85fr); gap: 14px; align-items: start; }
+.table-wrap { overflow: auto; }
+.admin-page table { width: 100%; border-collapse: collapse; text-align: left; font-size: 11px; }
+.admin-page th, .admin-page td { padding: 11px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.admin-page th { color: #66736a; font-size: 9px; letter-spacing: .5px; text-transform: uppercase; }
+.admin-page td button { padding: 0; border: 0; background: transparent; color: #355a3e; font: 700 11px var(--font-body); text-align: left; cursor: pointer; }
+.pagination { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 15px; font-size: 11px; }
+.pagination .button { min-height: 36px; padding: 0 12px; font-size: 10px; }
+.detail-card h3 { margin: 21px 0 9px; font: 700 14px var(--font-display); }
+.detail-card dl { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 8px 12px; margin: 0; font-size: 11px; line-height: 1.5; }
+.detail-card dt { color: var(--muted); }
+.detail-card dd { min-width: 0; margin: 0; overflow-wrap: anywhere; white-space: pre-wrap; }
+.detail-card .admin-form { max-width: none; }
+.detail-card textarea { min-height: 90px; resize: vertical; }
+.conversation-message { padding: 12px 0; border-top: 1px solid var(--line); }
+.conversation-message strong, .conversation-message small { display: block; }
+.conversation-message strong { font-size: 11px; }
+.conversation-message small { margin: 4px 0 8px; color: var(--muted); font-size: 9px; }
+.conversation-message p { margin: 0; color: var(--ink); white-space: pre-wrap; overflow-wrap: anywhere; }
+.reply-form { display: grid; gap: 11px; margin-top: 15px; }
+.reply-form button { justify-self: start; }
+.delivery-status { margin-top: 12px; font-size: 10px; }
+[hidden] { display: none !important; }
+@media (max-width: 900px) {
+  .filter-form { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .admin-columns { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .admin-header { gap: 10px; padding-inline: 14px; }
+  .admin-header .brand-logo { width: 70px; height: 50px; }
+  .admin-header h1 { font-size: 16px; }
+  .admin-shell { width: calc(100% - 22px); margin-top: 16px; }
+  .admin-card { padding: 14px; }
+  .filter-form { grid-template-columns: 1fr; }
+  .admin-columns { display: block; }
+  .detail-card { margin-top: 14px; }
+}

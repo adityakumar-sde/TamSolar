@@ -324,8 +324,75 @@ if (bgVideo && heroSection) {
   });
 }
 
+
 /* =========================================================
-   10. INITIALIZATION COMPLETE
+   10. LEGAL MODALS (Privacy Policy & Terms and Conditions)
+   ========================================================= */
+
+const privacyModal = document.getElementById("privacy-modal");
+const termsModal = document.getElementById("terms-modal");
+const openPrivacyBtns = document.querySelectorAll(
+  "#open-privacy-btn, #form-privacy-btn",
+);
+const openTermsBtns = document.querySelectorAll("#open-terms-btn");
+
+const openLegalModal = (modal) => {
+  if (!modal) return;
+  modal.removeAttribute("hidden");
+  document.body.style.overflow = "hidden";
+  const closeBtn = modal.querySelector(".legal-modal-close");
+  if (closeBtn) {
+    closeBtn.focus();
+  }
+};
+
+const closeLegalModal = (modal) => {
+  if (!modal) return;
+  modal.setAttribute("hidden", "");
+  document.body.style.overflow = "";
+};
+
+openPrivacyBtns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    openLegalModal(privacyModal);
+  });
+});
+
+openTermsBtns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    openLegalModal(termsModal);
+  });
+});
+
+document.querySelectorAll("[data-close-modal]").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const parentModal = btn.closest(".legal-modal-backdrop");
+    if (parentModal) {
+      closeLegalModal(parentModal);
+    }
+  });
+});
+
+[privacyModal, termsModal].forEach((modal) => {
+  if (!modal) return;
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeLegalModal(modal);
+    }
+  });
+});
+
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    closeLegalModal(privacyModal);
+    closeLegalModal(termsModal);
+  }
+});
+
+/* =========================================================
+   11. INITIALIZATION COMPLETE
    ========================================================= */
 
 console.log("TAM Solar Solutions JavaScript initialized.");
