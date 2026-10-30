@@ -1,24 +1,23 @@
 package com.tamsolar.inquiry;
 
-import java.util.Map;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class InquiryRepository {
 
-    private final SimpleJdbcInsert insertInquiry;
     private final JdbcTemplate jdbcTemplate;
 
     public InquiryRepository(DataSource dataSource, JdbcTemplate jdbcTemplate) {
-        this.insertInquiry = new SimpleJdbcInsert(dataSource)
-            .withTableName("inquiries")
-            .usingColumns("name", "email", "phone", "customer_type", "enquiry_type", "message")
-            .usingGeneratedKeyColumns("id");
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -27,19 +26,33 @@ public class InquiryRepository {
     }
 
     public Long create(String name, String email, String phone, String customerType, String enquiryType, String message) {
-        java.util.Map<String, Object> params = new java.util.HashMap<>();
-        params.put("name", name);
-        params.put("email", email);
-        params.put("phone", phone);
-        params.put("customer_type", customerType);
-        params.put("enquiry_type", enquiryType);
-        params.put("message", message);
-        Number generatedId = insertInquiry.executeAndReturnKey(params);
-        return generatedId.longValue();
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(
+                "INSERT INTO inquiries (name, email, phone, customer_type, enquiry_type, message) VALUES (?, ?, ?, ?, ?, ?)",
+                Statement.RETURN_GENERATED_KEYS
+            );
+            ps.setString(1, name);
+            ps.setString(2, email);
+            ps.setString(3, phone);
+            ps.setString(4, customerType);
+            ps.setString(5, enquiryType);
+            ps.setString(6, message);
+            return ps;
+        }, keyHolder);
+        return Objects.requireNonNull(keyHolder.getKey()).longValue();
     }
 
     public void checkConnection() {
         jdbcTemplate.queryForObject("SELECT 1", Integer.class);
+    }
+
+    public List<String> getTableNames() {
+        try {
+            return jdbcTemplate.queryForList("SHOW TABLES", String.class);
+        } catch (Exception e) {
+            return List.of();
+        }
     }
 
     public void initializeWorkflow(Long inquiryId) {

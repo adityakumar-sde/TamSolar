@@ -46,8 +46,12 @@ public class InquiryController {
     }
 
     @GetMapping("/health")
-    public Map<String, String> health() {
+    public Map<String, Object> health() {
         inquiryService.checkDatabaseConnection();
-        return Map.of("status", "ok", "database", "TamSolar");
+        return Map.of(
+            "status", "ok",
+            "database", "TamSolar",
+            "tables", inquiryService.getTableNames()
+        );
     }
 }

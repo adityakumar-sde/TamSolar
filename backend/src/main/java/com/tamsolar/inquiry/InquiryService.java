@@ -1,5 +1,6 @@
 package com.tamsolar.inquiry;
 
+import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.dao.DuplicateKeyException;
@@ -53,5 +54,9 @@ public class InquiryService {
 
     public void checkDatabaseConnection() {
         inquiryRepository.checkConnection();
+    }
+
+    public List<String> getTableNames() {
+        return inquiryRepository.getTableNames();
     }
 }

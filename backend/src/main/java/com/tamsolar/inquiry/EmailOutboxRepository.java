@@ -1,36 +1,27 @@
 package com.tamsolar.inquiry;
 
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class EmailOutboxRepository {
 
     private final JdbcTemplate jdbcTemplate;
-    private final SimpleJdbcInsert insert;
 
     public EmailOutboxRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-        this.insert = new SimpleJdbcInsert(jdbcTemplate.getDataSource())
-                .withTableName("email_outbox")
-                .usingColumns(
-                        "inquiry_id",
-                        "idempotency_key",
-                        "kind",
-                        "sender",
-                        "recipient",
-                        "subject",
-                        "text_body",
-                        "html_body")
-                .usingGeneratedKeyColumns("id");
     }
 
     public long enqueue(
@@ -42,20 +33,24 @@ public class EmailOutboxRepository {
             String subject,
             String textBody,
             String htmlBody) {
-        Map<String, Object> values = new HashMap<>();
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(
+                "INSERT INTO email_outbox (inquiry_id, idempotency_key, kind, sender, recipient, subject, text_body, html_body) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                Statement.RETURN_GENERATED_KEYS
+            );
+            ps.setLong(1, inquiryId);
+            ps.setString(2, idempotencyKey);
+            ps.setString(3, kind);
+            ps.setString(4, sender);
+            ps.setString(5, recipient);
+            ps.setString(6, subject);
+            ps.setString(7, textBody);
+            ps.setString(8, htmlBody);
+            return ps;
+        }, keyHolder);
 
-        values.put("inquiry_id", inquiryId);
-        values.put("idempotency_key", idempotencyKey);
-        values.put("kind", kind);
-        values.put("sender", sender);
-        values.put("recipient", recipient);
-        values.put("subject", subject);
-        values.put("text_body", textBody);
-        values.put("html_body", htmlBody);
-
-        Number generatedKey = insert.executeAndReturnKey(values);
-
-        return generatedKey.longValue();
+        return Objects.requireNonNull(keyHolder.getKey()).longValue();
     }
 
     public Optional<IdempotentReply> findByIdempotencyKey(String key) {
