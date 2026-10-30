@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.stereotype.Component;
 
@@ -14,9 +15,11 @@ public class DatabaseSchemaInitializer implements ApplicationRunner {
 
     private static final Logger logger = LoggerFactory.getLogger(DatabaseSchemaInitializer.class);
     private final DataSource dataSource;
+    private final JdbcTemplate jdbcTemplate;
 
-    public DatabaseSchemaInitializer(DataSource dataSource) {
+    public DatabaseSchemaInitializer(DataSource dataSource, JdbcTemplate jdbcTemplate) {
         this.dataSource = dataSource;
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
@@ -31,6 +34,12 @@ public class DatabaseSchemaInitializer implements ApplicationRunner {
         } catch (Exception e) {
             logger.error("Database schema initialization encountered an issue: {}", e.getMessage(), e);
         }
+
+        try {
+            jdbcTemplate.execute("ALTER TABLE inquiries ADD COLUMN phone VARCHAR(25) NULL AFTER email");
+            logger.info("Added missing 'phone' column to 'inquiries' table.");
+        } catch (Exception e) {
+            // Ignored if column already exists
+        }
     }
 }
-
