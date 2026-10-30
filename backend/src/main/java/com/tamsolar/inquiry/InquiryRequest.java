@@ -23,7 +23,6 @@ public class InquiryRequest {
     )
     private String phone;
 
-
     @NotBlank(message = "Choose a customer type.")
     @Pattern(
         regexp = "Homeowner|Business|Retailer|Wholesaler|Installer|Other",
@@ -33,7 +32,7 @@ public class InquiryRequest {
 
     @NotBlank(message = "Choose an enquiry topic.")
     @Pattern(
-        regexp = "Solar quote|Product information|Trade partnership|Customer support|Order support|Warranty enquiry|Other",
+        regexp = "Solar quote|Commercial solar enquiry|Product information|Solar panels|Inverters and components|Complete solar systems|Trade partnership|Customer support|Order support|Warranty enquiry|Other",
         message = "Choose a valid enquiry topic."
     )
     private String enquiryType;
@@ -58,7 +57,7 @@ public class InquiryRequest {
         this.email = email;
     }
 
-        public String getPhone() {
+    public String getPhone() {
         return phone;
     }
 

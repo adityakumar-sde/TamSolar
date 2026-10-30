@@ -23,12 +23,16 @@ public class AdminWebConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        // Restrict CORS strictly to local development and trusted LAN clients (no wildcard '*')
+        // Restrict CORS to local dev, LAN, Render domain, and Vercel production frontend
         registry.addMapping("/api/**")
                 .allowedOriginPatterns(
                     "http://localhost:[*]",
                     "http://127.0.0.1:[*]",
-                    "http://192.168.*:[*]"
+                    "http://192.168.*:[*]",
+                    "https://*.vercel.app",
+                    "https://tam-solar.vercel.app",
+                    "https://*.onrender.com",
+                    "https://tam-solar.onrender.com"
                 )
                 .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
