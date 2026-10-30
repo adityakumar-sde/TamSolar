@@ -7,7 +7,6 @@ import java.time.Instant;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -50,7 +49,28 @@ public class EmailOutboxRepository {
             return ps;
         }, keyHolder);
 
-        return Objects.requireNonNull(keyHolder.getKey()).longValue();
+        return extractGeneratedKey(keyHolder);
+    }
+
+    private long extractGeneratedKey(KeyHolder keyHolder) {
+        Map<String, Object> keys = keyHolder.getKeys();
+        if (keys != null && !keys.isEmpty()) {
+            Object val = keys.get("id");
+            if (val == null) {
+                val = keys.get("GENERATED_KEY");
+            }
+            if (val == null && !keys.values().isEmpty()) {
+                val = keys.values().iterator().next();
+            }
+            if (val instanceof Number num) {
+                return num.longValue();
+            }
+        }
+        Number key = keyHolder.getKey();
+        if (key != null) {
+            return key.longValue();
+        }
+        throw new IllegalStateException("No generated key returned from database insert.");
     }
 
     public Optional<IdempotentReply> findByIdempotencyKey(String key) {

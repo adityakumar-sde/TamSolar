@@ -31,11 +31,12 @@ public class ApiExceptionHandler {
     }
 
     @ExceptionHandler(DataAccessException.class)
-    public ResponseEntity<Map<String, String>> handleDatabaseFailure(DataAccessException exception) {
+    public ResponseEntity<Map<String, Object>> handleDatabaseFailure(DataAccessException exception) {
         logger.error("Database operation failed while handling an API request.", exception);
+        String detail = exception.getRootCause() != null ? exception.getRootCause().getMessage() : exception.getMessage();
         return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(Map.of(
-            "error",
-            "We couldn’t save your enquiry right now. Please try again or contact TAM Solar directly."
+            "error", "We couldn’t save your enquiry right now. Please try again or contact TAM Solar directly.",
+            "detail", detail != null ? detail : "Database error"
         ));
     }
 
